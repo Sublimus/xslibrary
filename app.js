@@ -41,7 +41,6 @@ mongoose.connect(keys.mongodb.dbURI, ()=>{
 })
 
 app.use((req, res, next) => {
-	console.log(req.user);
 	res.locals.user = req.user;
 	next();
 });
@@ -61,7 +60,7 @@ app.get('/', (req,res) => {
 	else {
 		res.redirect('/profile');
 	}
-	
+
 })
 
 app.get('/sched', (req,res) => {

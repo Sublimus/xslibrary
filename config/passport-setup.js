@@ -11,7 +11,7 @@ passport.deserializeUser((id, done)=>{
 	User.findById(id).then((user)=>{
 		done(null, user);
 	})
-	
+
 })
 
 passport.use(
@@ -22,8 +22,6 @@ passport.use(
 		clientSecret: keys.google.clientSecret
 	}, (accessToken, refreshToken, profile, done) => {
 		// passport callback function
-		console.log('passport callback function fired');
-		console.log(profile);
 		//check for existing user
 		User.findOne({googleId: profile.id}).then((currentUser) => {
 			if(currentUser){
@@ -41,6 +39,6 @@ passport.use(
 			}
 		})
 
-		
+
 	})
 );
