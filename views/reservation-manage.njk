@@ -1,0 +1,12 @@
+{% extends 'layouts/base.njk' %}
+{% block content %}
+<form action="/reservation/manage/{{reservation._id}}" method="post">
+	<fieldset>
+		<div class="form-group">
+			<label for="roomName">Reservation</label>
+			<input type="text" value="{{ room.roomName }}" name="roomName" class="form-control" id="roomName" placeholder="Edit reservation">
+		</div>
+	</fieldset>
+	<input type="submit" class="btn btn-primary" />
+</form>
+{% endblock %}

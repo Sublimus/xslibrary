@@ -1,0 +1,13 @@
+{% extends 'layouts/base.njk' %}
+{% block content %}
+<header>
+<h1>Hello, {{ user.username }}</h1>
+</header>
+<main>
+<p>
+<a class="schedbtn" href="/room"><button class="button button2">Manage Rooms</button></a>
+<!-- <a class="schedbtn" href="sched"><button class="button button2">View Room Schedules</button></a> -->
+<a class="schedbtn" href="/reservation"><button class="button button2">Manage your Reservations</button></a>
+</p>
+</main>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'layouts/base.njk' %}
+{% block content %}
+<div class="container">
+	<h1>Reserve a Room</h1>
+	<div class="card text-white bg-secondary mb-3">
+		<div class="card-header">Add a Reservation</div>
+		<div class="card-body">
+			<form action="/reservation/add" method="post">
+				<fieldset>
+					<div class="form-group">
+						<label for="roomName">Room</label>
+						<select name="room" class="form-control" id="roomName">
+							{% for room in rooms %}
+								<option value="{{ room._id }}">{{ room.roomName }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="roomName">Starting Time</label>
+						<div class="input-append date form_datetime1">
+							<input type="text" name="startTime" readonly>
+							<span class="add-on"><i class="icon-th"></i></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="roomName">Ending Time</label>
+						<div class="input-append date form_datetime2">
+							<input type="text" name="endTime" readonly>
+							<span class="add-on"><i class="icon-th"></i></span>
+						</div>
+					</div>
+				</fieldset>
+				<input type="submit" class="btn btn-primary" />
+			</form>
+		</div>
+	</div>
+	<div class="card text-white bg-secondary mb-3">
+		<div class="card-header">Reservations</div>
+		<div class="card-body">
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>Room Name</th>
+					<th>Start Time</th>
+					<th>End Time</th>
+					<!-- <th>Manage Reservation</th> -->
+					<th>Delete Reservation</th>
+				</tr>
+				{% for reservation in reservations %}
+					<tr>
+						<td>{{ room.roomName }}</td>
+						<td>{{ reservation.startTime }}</td>
+						<td>{{ reservation.endTime }}</td>
+						<!-- <td><a class="btn btn-warning" href="/reservation/manage/{{reservation._id}}">Manage Reservation</a></td> -->
+						<td><a class="btn btn-danger" href="/reservation/remove/{{reservation._id}}">Delete Reservation</a></td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(".form_datetime1").datetimepicker('setStartDate', (new Date()));
+	$(".form_datetime2").datetimepicker('setStartDate', (new Date()));
+	$(".form_datetime1").datetimepicker('setDaysOfWeekDisabled', [0,6]);
+	$(".form_datetime2").datetimepicker('setDaysOfWeekDisabled', [0,6]);
+    $(".form_datetime1").datetimepicker({
+        format: "dd MM yyyy - hh:ii"
+    }).on('changeDate', function(ev) {
+    	$(".form_datetime2").datetimepicker('setStartDate', ev.date);
+    });
+
+    $(".form_datetime2").datetimepicker({
+        format: "dd MM yyyy - hh:ii"
+    });
+</script>
+{% endblock %}
