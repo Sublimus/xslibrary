@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.post('/add', (req, res) => {
 	let newReservation = new reservation({
 		user: req.user._id,
-		room: req.body.roomName,
+		room: req.body.room,
 		startTime: req.body.startTime,
 		endTime: req.body.endTime
 	});

@@ -47,7 +47,7 @@
 				</tr>
 				{% for reservation in reservations %}
 					<tr>
-						<td>{{ room.roomName }}</td>
+						<td>{{ reservation.room.roomName }}</td>
 						<td>{{ reservation.startTime }}</td>
 						<td>{{ reservation.endTime }}</td>
 						<!-- <td><a class="btn btn-warning" href="/reservation/manage/{{reservation._id}}">Manage Reservation</a></td> -->
